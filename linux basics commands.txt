@@ -1,0 +1,227 @@
+Linux commands
+
+#(move command):
+mv names.txt random 	// move the names file into random
+
+#(to rename a file)
+mv file.txt newName.txt 	// rename the file.txt into newName.txt
+
+#(move and rename at same time)
+mv currentname.txt ../newName.txt	//move the file into the previous directory with new name
+
+#(copy a folder into another folder)
+cp -R name middle	//means copy the name folder into middle folder
+ 
+#(to Rename the folder)
+mv middle newmiddle	//changes the middle name into newmiddle
+
+#(move folder)
+mv Downloads/folder random	//move the folder which is inside the download into the random folder or then viceversa
+mv random/new1 .	//move the new1 folder of random into current directory
+
+#(remove command(delete))
+rm -R new1	//rm is to delete a file so thats why we write -R to tell delete the folder
+rm -rf		//that is force flag if something is not deleting
+
+#(super user do)
+sudo	//for administrator
+
+#(disk space)
+df
+df -h 	//for human understand
+du -h 	//to check how much space is acquired by a file
+
+#(vi command)
+vi amrit 		//amrit file will created 
+press i 		//this is to insert in the amrit file
+press esc then shift+; then press w for save and q for exit
+
+#(head & tail command)
+vi total.txt
+
+head -n 4 total.txt	//to print 4 head
+tail total.txt		//to print tail
+tail -n 2 total.txt	//to print last two
+
+#(diff command)
+diff total.txt two.txt 		//to compare the content of two files and print the content which does not match
+
+#(locate command)
+locate "*.txt"
+
+#(find command)
+find .		//find the things in current directory
+find ..		//finds the things in the previous directory
+find random
+find . -type d		 //find the directories in that current directory
+find random -type f	//finds the files from the random directory
+find . -type f -name "two.txt" 		//find file of name two
+find . -type f -name "*two.txt" 	//find all file of name two
+find . -type f -name "*txt" 		//find all the texts files from directory
+find . -type f -iname "*txt" 		//not be case sensitive
+find . -type f -mmin -20		//find a file which is updated less than 20 min ago// m means modify more than
+find . -type f -mmin +15		//all the file more than 20 min
+find . type f -mmin +2 -mmin -10	//find a file between more than 2 min or less than 10 min
+find . type f -mtime -10		//find a file modify less than 10 days ago
+find . type f -maxdepth 1		//its only show files of that current directory
+find . -size +5k			//find a file whose size is more than 5 kb
+find . -empty				//find empty file
+find .  -perm 777			//find a file who have read write permission
+
+read more about find from man find
+
+#(permissions)
+there are 3 types of permissions
+1.read
+2.write
+3.execute
+three types of people who are using the computers
+1.user
+2.group
+3.others
+
+ls -l Name.txt		//it will show the permission of the name file that user,group,other has permission
+-change file mode access-- chmod
+chmod u=rwx,g=rx,o=r Name.txt 	//user can read,write,execute the name file .group can...... so we can also give permission according ourselfs
+chmod 777 Name.txt			//4 stands for read ,2 stands for write and 1 stand for execute
+chmod 577 Name.txt			//4+1 =5 means user has read and execute permission only //0 stand for no permission
+ls -l Name.txt
+chmod 500 Name.txt			//noe permission to rest of the groups
+chmod 777 Name.txt			//means user,group,others have the all permission means 7 made by 4+2+1=7 means all permission
+ 
+#(Check owner)
+ls -l 			//means check the owners
+whoami			//from which person you are logged
+sudo chown root Name.txt 		//this make the name file to root
+cat Name.txt		//acces denied
+sudo cat Name.txt 	//by this you can acces the Name.txt
+//sudo means group ownwers means user and others means others// sudo means differnet user and if we dont write the sudo then means current user like whoami ..
+
+find . -perm 777		//means find a file who have all the permission
+find . -type f -name "*txt"	//to find the all text files
+find . -type f -name "*txt" -exec rm -rf {} + 	//it will delete all the text file from that directory
+
+#(grep) search from the list which is created by the vi command 
+grep -w "Kunal" names.txt 	//this is search a word from vi command created file
+grep -w "Kunal Kushwaha" names.txt 	//what is ask to search it will search like here i am searching kunal kushwaha
+grep -iw "kunal" names.txt		//means not case sensitive 
+grep -n 'Kunal" names.txt		//tells you line number
+grep -win "Kunal" names.txt		//here we combine the three commands in one commands
+grep -B 3 "Rahul" names.txt		//print previous three lines which come before the Rahul
+grep -win "Rahul" ./*.txt		//all files of rahul 
+grep -rwin "Rahul" .			//recursively finding the Rahul in given directory
+grep -wirl "kunal" .			//finding the file who ciontain the kunal file
+grep -wirc "Kunal" .			//count how many file contain Kunal
+
+#(history)
+history					//check history
+history | grep "ls"			//showing the history of all list
+
+grep -P "\w" companies.txt		//find words from the files
+grep -P "\d" ammrit
+
+#(git put origin name)
+gpom
+
+#(sorting)
+sort amrit 		//alphabet vise
+sort -r amrit		//in reverse order
+sort -f amrit		//sort according not case sensitive
+sort -n amrit		//sort according numerical
+
+jobs
+
+ping google.com
+then press ctrl+c to get out from that command
+
+#(wget)
+sudo apt install wget -y	//it will install the wget command
+wget https://www.google.com
+wget -o myfile.pdf
+
+top	//to check processes running
+
+#(zip command)
+zip files.zip amrit		//it will compress the amrit file
+zip files2.zip amrit amrith	//it will add both file into files2 also add .txt if that is a txt file
+unzip files2.zip		//for unzip replace that file into a another folder because text2.zip alreday there
+
+hostname
+hostname -i
+user
+
+#(in root)
+useradd User 		//add user of name User
+userdel User		//delete the user
+uname
+uname -o		//check type
+uname -m		//check architecture
+uname -r		//check kernel version
+cat /etc/os-release	//check os release
+lscpu			//check cpu
+free -h
+vmstat
+id
+id -G
+id -U
+getent group User		//to check user exists or not
+check any thing
+
+id User
+
+#(Networking commands)
+nslokup google.com 		//tell the ip address of google
+netstat				//to print all the ports who are currently listening or active
+
+read about logs
+#(cut)
+cut -c 1-2 amrit		//it will only print first two letters and cutt rest of the letters
+ps out 				//process ids
+ping
+
+(AND)
+echo "first" && echo "second	//only when first will be completed , second will be executed
+;
+(OR)				//to wrrite multiple command
+echo "first" || echo "second    //means one command will be prints. if first print then second does not
+
+(NOT)
+rm -rf !(text.txt)		//delete all files expecting text.txt
+
+echo "hey" >> amrit		//to append hey in the amrit file
+echo "hey" >amrit 		//this is only for overwrite
+
+(combination operator)
+echo "hey" && {echo "hi" ; echo "Iam good"}	//print one by one
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

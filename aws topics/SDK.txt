@@ -1,0 +1,44 @@
+How to access the s3 through the sdk
+
+1. First create a directory in the computer and also go to that directory in the vs code terminal also
+2. Then initialize a node project by writing--> npm init -y
+3. Then install the sdk by writing --> npm i aws sdk
+4. Then create a IAM user and Create a third party access key 
+5. Then make a index file in vs code name index.js
+6. Then write the following code in it:
+   
+const AWS = require('aws-sdk');
+
+let s3 = new AWS.S3({
+    region:'us-east-1',
+    accessKeyId:'AKIAU5ZUCPMIC2FGN6HR',
+    secretAccessKey:'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'
+});
+
+//to create bucket
+
+s3.createBucket({
+    Bucket: 'amrit-bucket-sdk'
+}, (error, success) =>{
+    if(error){
+        console.log(error)
+    }
+    console.log(success)
+}
+)
+
+//to create an object in the bucket
+
+s3.putObject({
+    Bucket: 'amrit-bucket-sdk',
+    Key: 'mytext-file.txt',
+    Body: Buffer('This is my text file')
+},(error, success) => {
+    if(error) {
+        console.log(error)
+    }
+    console.log(success)
+}   
+)
+
+Then debugg and write node index.js in the terminal

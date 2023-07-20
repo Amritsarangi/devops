@@ -1,0 +1,40 @@
+Now we have to Deploy our Project On the Tomcat Server
+
+1. After successfull running of project again click on project from dashboard
+2. Before that install the deploy container plugin
+3. After that go to project configure setting .
+4. Come in the bottom to the Post-build action 
+5. Click on the add Post-build action and click on Deploy war/ear to container
+6. In the WAR/EAR file type **/*.war
+   In the context path write nothing
+   In the container select Tomcat 9
+7. Then in credentials select the credentials
+8. And then give the tomcat url with port number
+9. And save it
+10. Then build the project , if it will siccessfully running then it will be visible
+ in the the tomcat manager window.
+
+Also configure tomcat for this because tomcat manager button is not accesible by default so do come
+configuration in it
+
+1. firstly go to the apache-tomcat....
+2. then go to conf and add following code in the tomcat-users.xml
+
+<role rolename="manager-gui"/>
+<role rolename="admin-gui"/>
+<role rolename="manager-script"/>
+<user username="admin" password="admin" roles="manager-gui, admin-gui"/>
+<user username="deployer" password="deployer" roles="manager-script"/>
+<user username="tomcat" password="s3cret" roles="manager-gui"/>
+
+You have to add this code in the last above to </tomcat-users>
+
+3. Then you have to find the context.xml from tomcat apache directory
+   find / -name "context.xml"
+4. now you will find that context.xml file is present in the 4 directories
+   docs, manager, host-manager , examples . These four files present in the webapp directory. 
+5. In these four files you have comment the value line which is present at somewhere at bottom
+6. Save these changes and restart the Tomcat
+
+So you have to do these two things to deploy any webapp on the tomcat server
+

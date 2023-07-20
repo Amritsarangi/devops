@@ -1,0 +1,8 @@
+how to install the elasticsearch
+
+1.follow the rpm commands from the documentation
+2.Insatll the elastic search by following the commands
+3.Then go to the etc/elasticsearch/elastic.yml file, enable the port and network.host by
+removing the # sign and also give the private ip to the network.host
+4.xpack.security.enable: false
+rest all will be true  

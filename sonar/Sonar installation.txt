@@ -1,0 +1,20 @@
+how to install sonarcube
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.1.0.47736.zip
+
+unzip sonar ...
+mv sonar.... /opt/
+cd /opt
+
+useradd sonar
+cat /etc/passwd   ......to check user
+now change the ownership by chown command
+chown -R sonar:sonar /opt/sonarqube -9.1.0.......
+
+su - sonar
+cd /opt/sonaequ...
+ll to caheck user has access or not
+cd /bin/linux-x86-64
+./sonar.sh start (start this only in user not in the root)
+
+also install git and maven 

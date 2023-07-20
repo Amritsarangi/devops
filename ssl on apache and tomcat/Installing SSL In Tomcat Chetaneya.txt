@@ -1,0 +1,27 @@
+Configuring the  SSL Certificate on Tomcat In RHEL:
+
+Pre Requistes Java open-JDK-11 and Tomcat
+
+keytool -genkey -keyalg RSA -alias Private IP DNS name -keystore tomcat.jks -validity 90 -keysize 2048 
+
+eg:
+
+keytool -genkey -keyalg RSA -alias ip-172-31-38-229.ap-south-1.compute.internal -keystore tomcat.jks -validity 90 -keysize 2048 
+
+set a password and remember it will be used in the next steps:
+
+then go to /home/ec2-user/conf/ and edit server.xml
+
+
+paste the below file near connector port = "8080" below this there is a <!--Define a SSL HTTP  **************************** -->
+
+In the below file if your keystorefile is in another path give that path
+
+<Connector
+        port="8443" maxHttpHeaderSize="8192" maxThreads="150" minSpareThreads="25"
+        maxSpareThreads="75" enableLookups="false" disableUploadTimeout="true" acceptCount="100"
+        scheme="https" secure="true" SSLEnabled="true" clientAuth="false" sslProtocol="TLS" keyAlias="ip-172-31-10-159.ap-northeast-1.compute.internal"
+        keystoreFile="/root/tomcat.jks" keystorePass="kommi123"
+        />
+
+

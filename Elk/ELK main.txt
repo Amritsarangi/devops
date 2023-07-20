@@ -1,0 +1,20 @@
+1.Firstly i created a instance for kibana
+2.then install the kibana by using the rpm method
+3.When you first enter the rpm command it will say SHAI1 signature is not found.search for it ans you will a command for that.
+update-crypto-policies --set DEFAULT:SHA1
+4.After installation start and enable the kibana systemctl start & enable kibana
+5.then go to /etc/kibana/kibana.yml 
+6.enable the port number and server host and give private ip address os kibana instance ,save and exit
+7.then restart the kibana by systemctl kibana restart
+8. when you put the ip of kibana in url it will ask for elasticsearch token....
+
+
+Now how to install the elasticsearch 
+
+1.firstly install the elasticsearch from the rpm package  and note the password after the installation 
+or cahnge it from /usr/share/elasticsearch/bin/elasticsearch-reset-password
+2.then change the server host (give private ip) and and enable the port
+3.now find the token by /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+4.now put that enrollment token in the login page of kibana
+5.if it ask for the verification of kibana then find the code by usr/share/kibana/bin/kibana-verification-code
+

@@ -1,0 +1,47 @@
+Steps to connect the apache and tomcat servers
+
+Firstly connect with ec2 instance
+cd Documents/AWS
+ssh -i pipfile ec2-user@public ipaddress
+
+
+then make it root
+sudo su
+
+yum install java
+
+yum install wget tar
+
+wget tarlink of tomcatapache
+
+untar the file and goto bin folder and write ./startsh
+
+yum install httpd
+
+cd /etc/httpd.conf.d
+
+vi proxy.conf
+and add proxy code in it by changing only ipaddress
+
+<VirtualHost *:80>
+
+<Proxy balancer://mycluster>
+    BalancerMember http://13.232.171.186:8080/
+</Proxy>
+
+    ProxyPreserveHost On
+
+    ProxyPass / balancer://mycluster/
+    ProxyPassReverse / balancer://mycluster/
+</VirtualHost>
+
+save and exit
+
+service httpd restart
+
+if u get 503 service unavailable error then execute below command:
+
+/usr/sbin/setsebool -P httpd_can_network_connect 1
+
+put the id address in url box
+

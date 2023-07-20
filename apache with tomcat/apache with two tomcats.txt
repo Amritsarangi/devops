@@ -1,0 +1,39 @@
+This to connect the apache servers with two tomcats servers:
+
+1. install two tomcat servers and give different names to them.
+2. Do not do ant thing with the first apache server 
+3. Go to the second apache server and open the conf file
+4. In the conf file there is server.xml file.
+5. Edit that server.xml file by vi server.xml
+6. Edit the connector port which is 8080 to 8081 or any other port no
+7. Also edit the Server port which is <Server port="9005" shutdown="SHUTDOWN"> to 9090
+8. Then save and exit from that file
+9. Then start both apache servers from apache/bin/./startsh
+10.Then install the apache servers by yum install httpd
+11.Then go to /etc/http/conf.d
+12.There you have to make a file proxy.conf
+13.now add that port into this file like:
+ 
+<VirtualHost *:80>
+
+<Proxy balancer://mycluster>
+    BalancerMember http://13.233.225.198:8080/
+    BalancerMember http://13.233.225.198:8081/
+</Proxy>
+
+    ProxyPreserveHost On
+
+    ProxyPass / balancer://mycluster/
+    ProxyPassReverse / balancer://mycluster/
+</VirtualHost>
+save and exit
+
+14. Then restart the httpd server
+15. You can also check the port information by writing
+    yum insatll net-tools
+    netstat -tnpl
+16. put the public ip into the URL box now apache will randomly hit any tomcat servers
+17. If u get 503 service unavailable error then execute below command:
+    /usr/sbin/setsebool -P httpd_can_network_connect 1
+
+

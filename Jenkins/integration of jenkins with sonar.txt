@@ -1,0 +1,30 @@
+1. First go to the sonar and go to your locally and then give name
+2. In the security generate a access token and giving a name and click on generate
+3. Then go to the Jenkins --> Plugin manager --> available plugin And serach for the
+ sonarqube scanner then click on that and in the bottom click on the install without restart
+ and restart the jenkins
+4. Now you have to add that token in the jenkins credentials
+5. Click on credentials and click on global credentials and click on add credentials which is at right of top
+   kind --> select the secret text
+   secret --> paste that credentials in the secret box
+   id-- give a name
+   description --> give something
+6. Click on Configure System
+   --> See the Sonarqube servers .tick on the environment variable
+   -->Add Sonarqube -->Give a name --> Server URl -- url of sonarqube with portno
+   -->Server authentication --> gene-token -->save
+7. Again go to manage jenkins --> Global Tool Configuration
+ -->Add SonarQube Scanner -->Name-cube -->save
+8. Now we are ready to make a project
+ 
+now we need a github source code link
+lets start to make aproject
+
+9. Click on new item -->give a project name -->freestyle project -->ok
+10. Provide a description -->hit the Discard old builds -->give days like 10 days-->max# 5
+    Click on git button and provide a github link of a project -->give the same branch name which is specified in the githhub project
+    Click on Prepare SonarQube Scanner Environment -->Build -->Add build Step
+    -->Excute Shell -->Write in box : mvn package sonar:sonar
+    And then save it
+11. Click on Build our project
+12 .If it successfully run then we can see the code review in the sonarqube

@@ -1,0 +1,24 @@
+how to install jenkins
+
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+  
+yum install fontconfig java-11-openjdk
+yum install jenkins
+
+yum install git and maven also
+
+also start the jenkins
+  
+
+After that you have to put ip address in the url
+it will ask you about the password and find that password from /var	
+cd /var/lib/jenkins/secrets
+ls
+cat initialAdminPassword
+
+then you have to put ip address in url boc
+then it will download some plugins and then create a user name and a password 
+
+amritpalsingh22
+Jenkins@2023

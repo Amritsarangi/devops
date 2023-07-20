@@ -1,0 +1,15 @@
+to configure ssl httpd with ssl tomcat
+
+simply put proxy file in /etc/httpd/conf.d/ssl.conf
+
+<Directory "/var/www/cgi-bin">
+    SSLOptions +StdEnvVars
+</Directory>
+<Proxy balancer://mycluster>
+    BalancerMember http://3.109.133.90:8080
+</Proxy>
+
+    ProxyPreserveHost On
+
+    ProxyPass / balancer://mycluster/
+    ProxyPassReverse / balancer://mycluster/

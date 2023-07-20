@@ -1,0 +1,22 @@
+keytool -genkey -keystore /root/apache1/conf -alias tomcatmeera -keyalg RSA
+
+
+
+
+
+keytool -genkey -alias tomcatamrit -keypass changeit -keyalg RSA
+
+
+
+keytool -genkey -keystore /root/apache2/conf/ssl.keystore -alias tomcatmeera -keyalg RSA
+
+
+
+
+
+
+<Connector protocol="HTTP/1.1"
+ port="7443" maxThreads="200"
+ scheme="https" secure="true" SSLEnabled="true"
+ keystoreFile="" keystorePass="changeit"
+clientAuth="false" sslProtocol="TLS"/>
